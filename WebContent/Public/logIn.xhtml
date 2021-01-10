@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Log In</title>
+</h:head>
+
+<h:body>
+
+<!--PARA PRIMEFACES PERO AÚN NO VALE
+	<div class="container">
+		<h:form>
+
+			<div className="p-field p-grid">
+				<label htmlFor="firstname3" className="p-col-fixed" style={{width:'100px'}}>Correo</label>
+				<div className="p-col">
+					<h:inputText type="text" class="form-control" id="firstname3"
+						value="#{logInBean.correo}" />
+				</div>
+			</div>
+			<div className="p-field p-grid">
+				<label htmlFor="lastname3" className="p-col-fixed" style={{width:'100px'}}>Contraseña</label>
+				<div className="p-col">
+					<h:inputSecret type="password" class="form-control" id="lastname3"
+						value="#{logInBean.password}" />
+				</div>
+			</div>
+			<div class="center">
+				<h:commandButton value="Iniciar Sesion" action="#{logInBean.validateUser()}" />
+			</div>
+		</h:form>
+	</div>-->
+
+
+	<div>
+        <div>
+            <h:form class="col-12" action="">
+                <div class="form-group">
+                    <h4><h:outputLabel value="Usuario:" /></h4>
+                    <h:inputText placeholder="Ingrese su Correo" type="text" class="form-control" id="id1" value="#{logInBean.correo}"/>
+                </div>
+                <br/>
+                <div class="form-group">
+                    <h4><h:outputLabel value="Password:"/></h4>
+                    <h:inputSecret placeholder="Ingrese su contrasena" type="text" class="form-control" id="id2" value="#{logInBean.password}"/>
+                </div>
+                <br/>
+                <div class="form-group-lg" style="margin-top: 50px">
+                    <h:commandButton value="Iniciar Sesion" styleClass="btn btn-primary btn-block" action="#{logInBean.validateUser()}"/>
+                </div>
+            </h:form>
+        </div>
+    </div>
+
+</h:body>
+
+</html>
