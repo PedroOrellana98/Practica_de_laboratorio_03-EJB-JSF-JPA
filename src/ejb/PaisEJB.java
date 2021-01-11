@@ -1,5 +1,6 @@
 package ejb;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -26,9 +27,16 @@ public class PaisEJB extends AbstractFacade<Pais> {
 		return entityManager;
 	}
 
-	public Pais buscarPais(String nombre) {
-		String query = "SELECT * FROM pais WHERE nombre='" + nombre + "';";
-		return (Pais) getEntityManager().createQuery(query).getSingleResult();
-	}
-
+	/*public List<Pais> buscarCodigoPais(String nombre) {
+		List<Pais> paises = new ArrayList<Pais>();
+		String consulta = "Select p From pais p Where p.nombre=:nombre";
+		System.out.println("Se lanzo la siguiente consulta: " + consulta);
+		try {
+			paises = entityManager.createQuery(consulta).setParameter("nombre", nombre).getResultList();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.err.println("Existio un error en la consulta");
+		}
+		return paises;
+	}*/
 }

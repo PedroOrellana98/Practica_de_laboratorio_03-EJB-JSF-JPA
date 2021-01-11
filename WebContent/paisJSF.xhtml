@@ -9,11 +9,27 @@
 	<title>Pais JSF</title>
 </h:head>
 <h:body>
-	<p>
-		<h:outputText value="#{paisJSF.buscarPais('ECUADOR')}" />
-	</p>
-	<p>
-		<!--<h:outputText value="#{impresora.miSaludo.saludar('Pedro')}" /> -->
-	</p>
+	<h:form id="form">
+		<p>
+			<h:outputText value="NOMBRE"/>
+			<h:inputText type="text" class="form-control" id="id1" value="#{paisJSF.nombre}" />
+		</p>
+		<p>
+			<h:commandButton value="Crear" update="form" actionListener="#{paisJSF.crearPais()}" />
+		</p>
+		<h:dataTable value="#{paisJSF.listarPaises()}" var="p">
+			<h:column headerText="CODIGO">
+				<h:outputText value="#{p.codigo}"/>
+			</h:column>
+			<h:column headerText="NOMBRE">
+				<h:outputText value="#{p.nombre}"/>
+			</h:column>
+		</h:dataTable>
+		<p>
+			<h:outputText  type="text" value="#{paisJSF.buscarCodigoPais('ECUADOR')}"/>
+		</p>
+	</h:form>
+
+
 </h:body>
 </html>

@@ -2,62 +2,54 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" type="javascript"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" type="javascript"></script>
 
 <h:head>
 	<title>Log In</title>
 </h:head>
 
-<h:body>
+<h:body style="background-image: url('https://s1.eestatic.com/2017/08/25/actualidad/Actualidad_241740063_129998100_1024x576.jpg'); background-repeat: no-repeat; background-size: cover;">
 
-<!--PARA PRIMEFACES PERO AÚN NO VALE
+	<h1 style="color: white; text-align: center; margin-top: 100px"> BIENVENIDO
+	</h1>
+	<h2 style="color: white; text-align: center; margin-top: 50px"> INICIO DE SESION
+	</h2>
 	<div class="container">
 		<h:form>
-
+			<br>
+			</br>
 			<div className="p-field p-grid">
-				<label htmlFor="firstname3" className="p-col-fixed" style={{width:'100px'}}>Correo</label>
+				<label htmlFor="firstname3" className="p-col-fixed" style = "color:white">Correo</label>
 				<div className="p-col">
 					<h:inputText type="text" class="form-control" id="firstname3"
 						value="#{logInBean.correo}" />
 				</div>
 			</div>
+			<br>
+			</br>
 			<div className="p-field p-grid">
-				<label htmlFor="lastname3" className="p-col-fixed" style={{width:'100px'}}>Contraseña</label>
+				<label htmlFor="lastname3" className="p-col-fixed" style = "color:white">Contraseña</label>
 				<div className="p-col">
 					<h:inputSecret type="password" class="form-control" id="lastname3"
 						value="#{logInBean.password}" />
 				</div>
 			</div>
+			<br>
+			</br>
 			<div class="center">
-				<h:commandButton value="Iniciar Sesion" action="#{logInBean.validateUser()}" />
+				<h:commandButton value="Iniciar Sesion" action="#{logInBean.validateUser()}" style=" border: none; cursor: pointer;
+				 border-radius: 5px;"/>
 			</div>
 		</h:form>
-	</div>-->
-
-
-	<div>
-        <div>
-            <h:form class="col-12" action="">
-                <div class="form-group">
-                    <h4><h:outputLabel value="Usuario:" /></h4>
-                    <h:inputText placeholder="Ingrese su Correo" type="text" class="form-control" id="id1" value="#{logInBean.correo}"/>
-                </div>
-                <br/>
-                <div class="form-group">
-                    <h4><h:outputLabel value="Password:"/></h4>
-                    <h:inputSecret placeholder="Ingrese su contrasena" type="text" class="form-control" id="id2" value="#{logInBean.password}"/>
-                </div>
-                <br/>
-                <div class="form-group-lg" style="margin-top: 50px">
-                    <h:commandButton value="Iniciar Sesion" styleClass="btn btn-primary btn-block" action="#{logInBean.validateUser()}"/>
-                </div>
-            </h:form>
-        </div>
-    </div>
-
+	</div>
+	
 </h:body>
 
 </html>
