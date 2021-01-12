@@ -18,7 +18,7 @@ import java.util.Map;
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
 @SessionScoped
-public class LogInBean implements Serializable {
+public class LogInControlador implements Serializable {
     private static final long serialVersionUID=1L;
     private String correo;
     private String password;
@@ -68,10 +68,10 @@ public class LogInBean implements Serializable {
             try {
                 if(user.getRol().getNombre().toLowerCase().equals("administrador")) {
                     createCookie(user.getCorreo(), true);
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("../Private/paginaAdministrador.xhtml");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("../Private/paginaAdmin.xhtml");
                 }else {
                     createCookie(user.getCorreo(), false);
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("/factura.xhtml");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("longIn.xhtml");
                 }
             }catch (Exception e){e.printStackTrace();}
         }

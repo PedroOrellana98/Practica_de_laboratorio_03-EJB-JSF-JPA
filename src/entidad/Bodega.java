@@ -98,6 +98,14 @@ public class Bodega implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+    public boolean agregarProducto(Producto producto){
+        return this.productosList.add(producto);
+    }
+
+    public boolean addStock(Stock stock){
+        return this.lista_stock.add(stock);
+    }
 
 	@Override
 	public int hashCode() {

@@ -1,9 +1,18 @@
 package ejb;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
+import entidad.Categoria;
 import entidad.Producto;
 
 @Stateless
@@ -21,5 +30,39 @@ public class ProductoEJB extends AbstractFacade<Producto>{
 		// TODO Auto-generated method stub
 		return entityManager;
 	}
+	
+	public static List<Integer> codigoProductos;
+	public static List<Producto> productos;
+	public static List<Categoria> categoriasList;
+	
+	
+	 public Producto buscarProducto(String nombre){
+
+	        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+	        CriteriaQuery<Producto> criteriaQuery = criteriaBuilder.createQuery(Producto.class);
+	        Root<Producto> usuarioRoot=criteriaQuery.from(Producto.class);
+	        Predicate predicate = criteriaBuilder.equal(usuarioRoot.get("nombre"),nombre);
+	        criteriaQuery.select(usuarioRoot).where(predicate);
+	        return entityManager.createQuery(criteriaQuery).getSingleResult();
+	    }
+
+	    public Producto buscarPrductoPorNombre(String nombre){
+	        CriteriaBuilder criteriaBuilder= entityManager.getCriteriaBuilder();
+	        CriteriaQuery<Producto> criteriaQuery= criteriaBuilder.createQuery(Producto.class);
+	        Root<Producto> categoriaRoot= criteriaQuery.from(Producto.class);
+	        Predicate predicate= criteriaBuilder.equal(categoriaRoot.get("nombre"),nombre);
+	        criteriaQuery.select(categoriaRoot).where(predicate);
+
+	        return entityManager.createQuery(criteriaQuery).getSingleResult();
+	    }
+	    
+	    public Producto buscarProductoPorCodigo(String id){
+	        CriteriaBuilder criteriaBuilder= entityManager.getCriteriaBuilder();
+	        CriteriaQuery<Producto> criteriaQuery= criteriaBuilder.createQuery(Producto.class);
+	        Root<Producto> categoriaRoot= criteriaQuery.from(Producto.class);
+	        Predicate predicate= criteriaBuilder.equal(categoriaRoot.get("codigo"),id);
+	        criteriaQuery.select(categoriaRoot).where(predicate);
+	        return entityManager.createQuery(criteriaQuery).getSingleResult();
+	    }
 
 }

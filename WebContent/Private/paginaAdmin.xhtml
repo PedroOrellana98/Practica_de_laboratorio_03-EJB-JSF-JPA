@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
+
+<h:head>
+    <title>Registro Producto</title>
+
+    <style type="">
+        h3{
+            margin-left: 5%;
+        }
+
+    </style>
+
+</h:head>
+
+<h:body style="background-image: url('https://img.freepik.com/foto-gratis/mesa-madera-vacia-humo-colores-flotando-sobre-fondo-oscuro_68495-150.jpg'); background-repeat: no-repeat; background-size: cover;">
+    <div class="navbar navbar-inverse" style="background-color: gainsboro">
+        <div class="">
+            <div style="color: black">Pagina Administrador</div>
+        </div>
+        <h:form>
+        	<h:commandLink action="#{productoControlador.redirectBodegas}" style="margin-left: 900px;">Bodega</h:commandLink>
+        	<h:commandLink action="#{productoControlador.deleteCookie}" style="margin-left: 50px;">Pedidos</h:commandLink>
+            <h:commandLink action="#{productoControlador.deleteCookie}" style="margin-left: 50px;">Cerrar Sesion</h:commandLink>
+        </h:form>
+        <h:outputLabel value="#{productoBean.cookie}"/>
+    </div>
+
+
+    <h:form style="float: left;width: 80%;margin-right: 10%;margin-left: 10%;margin-top: 4%;">
+        <h3 style="color: white; text-align: center">REGISTRAR PRODUCTO</h3>
+        <br></br>
+        <br></br>
+        <br></br>
+		<br></br>
+        <h:outputText value="NOMBRE PRODUCTO" style="color: white;width: 60%;"/>
+        <h:inputText id="nombre" value="#{productoControlador.nombre}" style="border-block: revert; border-radius: 10px; margin-left: 3%; width: 400px;"></h:inputText>
+        <h:message for="nombre"></h:message>
+        <br></br>
+        <br></br>
+        <h:outputText value="PRECIO PRODUCTO" style="color: white;width: 60%;"/>
+        <h:inputText id="precioCompra" value="#{productoControlador.precioCompra}" style="border-block: revert; border-radius: 10px; margin-left: 4%; width: 400px;"></h:inputText>
+        <h:message for="precioCompra"></h:message>
+        <br></br>
+		<br></br>
+        <h:outputText value="PRECIO VENTA" style="color: white;width: 60%;"/>
+        <h:inputText id="precioVenta" value="#{productoControlador.precioVenta}" style="border-block: revert; border-radius: 10px; margin-left: 6.5%; width: 400px;"></h:inputText>
+        <h:message for="precioVenta"></h:message>
+        <br></br>
+		<br></br>
+        <h:outputText value="IVA" style="color: white;width: 60%;"/>
+        <h:inputText id="iva" value="#{productoControlador.iva}" style="border-block: revert; border-radius: 10px; margin-left: 12.5%; width: 400px;"></h:inputText>
+        <h:message for="iva"></h:message>
+        <br></br>
+		<br></br>
+        <h:outputText value="STOCK PRODUCTO" style="color: white;width: 60%;"/>
+        <h:inputText id="stock" value="#{productoControlador.stock}" style="border-block: revert; border-radius: 10px; margin-left: 4.3%; width: 400px;"></h:inputText>
+        <h:message for="stock"></h:message>
+        <br></br><br></br>
+
+        <h:selectOneMenu styleClass="btn btn-secondary dropdown-toggle" value="#{productoControlador.categoria}" style="margin-right: 5%;">
+            <f:selectItems  value="#{productoControlador.list}" var="categoria" itemValue="#{categoria.nombre}" itemLabel="#{categoria.nombre}" pt:styleClass="dropdown-item"/>
+        </h:selectOneMenu>
+
+        <h:selectManyMenu styleClass="btn btn-secondary dropdown-toggle" value="#{productoControlador.selectedbodegas}" style="height: 30px;">
+            <f:selectItems value="#{productoControlador.bodegas}" var="bodegas" itemValue="#{bodegas.nombre}" itemLabel="#{bodegas.nombre}">
+            </f:selectItems>
+        </h:selectManyMenu>
+
+        <h:commandButton action="#{productoControlador.addProducto}" value="Registrar" class="btn btn-primary" style="margin-left: 3%;width: 10%;margin-top: 5%"></h:commandButton>
+
+    </h:form>
+
+</h:body>
+</html>
