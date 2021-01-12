@@ -55,7 +55,6 @@ public class ProductoControlador implements Serializable {
     private boolean disabled=true;
     @EJB
     private StockEJB stockEJB;
-    private String cookie;
     
     public ProductoControlador() {
 
@@ -223,7 +222,7 @@ public class ProductoControlador implements Serializable {
                 s1.addBodega(a1);
                 s1.addStock(stock);
             } else {
-                System.out.println("No se pudo ejecutar la insercion");
+                System.out.println("No se pudo ejecutar el listado de productos");
             }
         }
         productoEJB.create(s1);
@@ -308,13 +307,12 @@ public class ProductoControlador implements Serializable {
     }
     
     public void deleteCookie(){
-        System.out.println("METHOD CALLED!");
         FacesContext.getCurrentInstance().getExternalContext().addResponseCookie("administrador", "", null);
         Cookie cookie = (Cookie) FacesContext.getCurrentInstance().getExternalContext().getRequestCookieMap().get("administrador");
-        if(cookie.getValue().equals("")) System.out.println("Se ha nulificado la cookie de manera correcta!"); else
-            System.out.println("Se ha nulificado el valor correctamente!");
+        if(cookie.getValue().equals("")) System.out.println(); else
+            System.out.println();
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/public/paginaCatalogo.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("../Public/logIn.xhtml");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -322,7 +320,7 @@ public class ProductoControlador implements Serializable {
 
     public void redirectBodegas(){
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/private/paginaBodegas.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/private/paginaBodega.xhtml");
         } catch (Exception e) {
             e.printStackTrace();
         }
