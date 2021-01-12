@@ -19,6 +19,12 @@ public class UsuarioEJB extends AbstractFacade<Usuario>{
 		super(Usuario.class);
 		// TODO Auto-generated constructor stub
 	}
+
+	@Override
+	protected EntityManager getEntityManager() {
+		// TODO Auto-generated method stub
+		return entityManager;
+	}
 	
 	public synchronized Usuario logIn(String correo, String password){
         CriteriaBuilder criteriaBuilder= entityManager.getCriteriaBuilder();
@@ -33,12 +39,6 @@ public class UsuarioEJB extends AbstractFacade<Usuario>{
         }catch (Exception e){
             return null;
         }
-	}
-
-	@Override
-	protected EntityManager getEntityManager() {
-		// TODO Auto-generated method stub
-		return entityManager;
 	}
 
 }

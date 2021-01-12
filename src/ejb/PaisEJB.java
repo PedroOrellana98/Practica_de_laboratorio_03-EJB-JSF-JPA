@@ -39,4 +39,9 @@ public class PaisEJB extends AbstractFacade<Pais> {
 		}
 		return paises;
 	}*/
+	
+	public Pais findPais(String nombre){
+        String query=" SELECT p FROM Pais p WHERE p.nombre= '"+nombre+"';";
+        return (Pais) getEntityManager().createQuery(query).getSingleResult();
+    }
 }

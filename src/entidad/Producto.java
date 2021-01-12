@@ -176,7 +176,14 @@ public class Producto implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+    public void addBodega(Bodega bodega){
+        this.bodegasList.add(bodega);
+    }
 
+    public void addStock(Stock stock){
+        this.lista_stock.add(stock);
+    }
 	@Override
 	public int hashCode() {
 		final int prime = 31;
