@@ -7,47 +7,45 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
-<link rel="stylesheet" href="/css/style.csss"/>
 
 <h:head>
 	<title>Log In</title>
 </h:head>
 
-<h:body>
-	
-	<p class="text-center text-white bg-dark">BIENVENIDO - Log In</p>
-	
+<h:body style="background-image: url('https://s1.eestatic.com/2017/08/25/actualidad/Actualidad_241740063_129998100_1024x576.jpg'); background-repeat: no-repeat; background-size: cover;">
+
+	<h1 style="color: white; text-align: center; margin-top: 100px"> BIENVENIDO
+	</h1>
+	<h2 style="color: white; text-align: center; margin-top: 50px"> INICIO DE SESION
+	</h2>
 	<div class="container">
-  		<div class="row">
-    		<div class="col-sm-3"></div>
-    		<div class="col-sm-5">
-    		<br/>
-    		<h1> Inicia Sesión</h1>
-      			<h:form>
-					<div class="mb-3 row">
-						<label for="firstname3" class="form-label" >Correo</label>
-					</div>
-					<div class="col">
-						<h:inputText type="text" class="form-control" id="firstname3" value="#{logInControlador.correo}"/>
-					</div>
-			
-					<div class="mb-3 row">
-						<label for="lastname3" class="form-label">Contraseña</label>
-					</div>
-					<div class="col">
-						<h:inputText type="password" class="form-control" id="lastname3" value="#{logInControlador.password}" />
-					</div>
-					<br/>
-					<div class="container">
-						<h:commandButton  class="btn btn-primary" value="Iniciar Sesion" action="#{logInControlador.validateUser()}" />
-					</div>
-				</h:form>
-    		</div>
-    		<div class="col-sm-3"></div>
-  		</div>
-    </div>
-
-
+		<h:form>
+			<br>
+			</br>
+			<div className="p-field p-grid">
+				<label htmlFor="firstname3" className="p-col-fixed" style = "color:white">Correo</label>
+				<div className="p-col">
+					<p:inputText type="text" class="form-control" id="firstname3"
+						value="#{logInControlador.correo}" />
+				</div>
+			</div>
+			<br>
+			</br>
+			<div className="p-field p-grid">
+				<label htmlFor="lastname3" className="p-col-fixed" style = "color:white">Contraseña</label>
+				<div className="p-col">
+					<p:inputText type="password" class="form-control" id="lastname3"
+						value="#{logInControlador.password}" />
+				</div>
+			</div>
+			<br>
+			</br>
+			<div class="center">
+				<p:commandButton value="Iniciar Sesion" action="#{logInControlador.validateUser()}" />
+			</div>
+		</h:form>
+	</div>
+	
 </h:body>
 
 </html>
