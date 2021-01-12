@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Bodega</title>
+</h:head>
+
+<h:body style="background-image: url('https://cdn.cjr.org/wp-content/uploads/2019/07/AdobeStock_100000042-e1563305717660-686x371.jpeg'); background-repeat: no-repeat; background-size: cover;">
+
+	<h1 style="color: white; text-align: center; margin-top: 50px"> REGISTRO DE BODEGAS
+	</h1>
+	<div class="container">
+		<h:form>
+			<br>
+			</br>
+			<div className="p-field p-grid">
+				<label className="p-col-fixed" style = "color:white">CIUDAD</label>
+				<div className="p-col">
+					<p:inputText type="text" class="form-control" 
+						value="#{bodegaControlador.ciudad}" />
+				</div>
+			</div>
+			<br>
+			</br>
+			<div className="p-field p-grid">
+				<label className="p-col-fixed" style = "color:white">PROVINCIA</label>
+				<div className="p-col">
+					<p:inputText type="TEXT" class="form-control" 
+						value="#{bodegaControlador.provincia}" />
+				</div>
+			</div>
+			<br>
+			</br>
+			<div className="p-field p-grid">
+				<label className="p-col-fixed" style = "color:white">PAIS</label>
+				<div className="p-col">
+					<p:inputText type="TEXT" class="form-control" 
+						value="#{bodegaControlador.pais}" />
+				</div>
+			</div>
+			<br>
+			</br>
+			<div className="p-field p-grid">
+				<label className="p-col-fixed" style = "color:white">NOMBRE BODEGA</label>
+				<div className="p-col">
+					<p:inputText type="TEXT" class="form-control"
+						value="#{bodegaControlador.nombre}" />
+				</div>
+			</div>
+			<br>
+			</br>
+			<div class="center">
+				<p:commandButton value="Registar" action="#{bodegaControlador.CrearBodegas}"/>
+			</div>
+		</h:form>
+	</div>
+	
+</h:body>
+
+</html>
