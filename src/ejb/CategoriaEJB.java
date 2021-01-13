@@ -48,5 +48,9 @@ public class CategoriaEJB extends AbstractFacade<Categoria> {
 				.where(criteriaBuilder.equal(categoriaRoot.get("nombre"), nombreCategoria));
 		return entityManager.createQuery(categoriaCriteriaQuery).getSingleResult();
 	}
+	
+	public List<Categoria> categoriaList(){
+        return null;
+    }
 
 }
