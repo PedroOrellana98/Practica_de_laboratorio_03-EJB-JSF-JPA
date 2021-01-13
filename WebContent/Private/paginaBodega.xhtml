@@ -2,65 +2,116 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" type="javascript"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" type="javascript"></script>
+<link rel="stylesheet" href="style/style.css" />
 
 <h:head>
-	<title>Bodega</title>
+
+
+	<title>Bodegas</title>
+
+
+	<!--comentario-->
+	<script type="text/javascript">
+		function indicador(data) {
+			if (data.status == "begin")
+				document.getElementById("id5").style.display = "inline";
+			else if (data.status == "success")
+				document.getElementById("id5").style.display = "none";
+		}
+	</script>
+
 </h:head>
 
-<h:body style="background-image: url('https://cdn.cjr.org/wp-content/uploads/2019/07/AdobeStock_100000042-e1563305717660-686x371.jpeg'); background-repeat: no-repeat; background-size: cover;">
+<h:outputLabel value="#{bodegaControlador.cookie}" style="display: none" />
 
-	<h1 style="color: white; text-align: center; margin-top: 50px"> REGISTRO DE BODEGAS
-	</h1>
-	<div class="container">
-		<h:form>
-			<br>
-			</br>
-			<div className="p-field p-grid">
-				<label className="p-col-fixed" style = "color:white">CIUDAD</label>
-				<div className="p-col">
-					<p:inputText type="text" class="form-control" 
-						value="#{bodegaControlador.ciudad}" />
-				</div>
-			</div>
-			<br>
-			</br>
-			<div className="p-field p-grid">
-				<label className="p-col-fixed" style = "color:white">PROVINCIA</label>
-				<div className="p-col">
-					<p:inputText type="TEXT" class="form-control" 
-						value="#{bodegaControlador.provincia}" />
-				</div>
-			</div>
-			<br>
-			</br>
-			<div className="p-field p-grid">
-				<label className="p-col-fixed" style = "color:white">PAIS</label>
-				<div className="p-col">
-					<p:inputText type="TEXT" class="form-control" 
-						value="#{bodegaControlador.pais}" />
-				</div>
-			</div>
-			<br>
-			</br>
-			<div className="p-field p-grid">
-				<label className="p-col-fixed" style = "color:white">NOMBRE BODEGA</label>
-				<div className="p-col">
-					<p:inputText type="TEXT" class="form-control"
-						value="#{bodegaControlador.nombre}" />
-				</div>
-			</div>
-			<br>
-			</br>
-			<div class="center">
-				<p:commandButton value="Registar" action="#{bodegaControlador.CrearBodegas}"/>
-			</div>
-		</h:form>
-	</div>
+<h:form>
+
+	<nav class="navbar navbar-inverse" style="background-color: gainsboro">
+
+	<ul class="navbar-nav">
+		<li><h:commandLink class="nav-link"
+				action="#{bodegaControlador.regresar}" value="Regresar" /></li>
+	</ul>
+	<h:commandLink action="#{productoControlador.deleteCookie}"
+				style="margin-left: 50px;">Cerrar Sesion</h:commandLink>
+	</nav>
+</h:form>
+
+<h:body
+	style="background-image: url('https://blog.prezi.com/wp-content/uploads/2019/04/03-deep-blue-1024x576.jpg'); background-repeat: no-repeat; background-size: cover;">
 	
+	<h3 style="color: white; text-align: center; margin-top : 30px">ADMINISTRACION DE BODEGA</h3>
+	<h:form>
+		<fieldset style="width: 55%; float: left;">
+			<p style="margin-left: 50px; color: white">Bodega <h:inputText size="44" style="margin-left: 83px; border-block: revert; border-radius: 10px;" value="#{bodegaControlador.nombre}" /> </p>
+			<h:outputLabel style="display: none" value="#{bodegaControlador.cookie}" />
+			<p style="margin-left: 50px; color: white">Pais <h:selectOneMenu style="margin-left: 110px; width: 350px; border-block: revert; border-radius: 10px;" value="#{bodegaControlador.level1}">
+					<f:selectItems value="#{bodegaControlador.level1List}" />
+					<f:ajax render="idList2 idList3 id4" onevent="indicador" />
+				</h:selectOneMenu></p>
+			<p style="margin-left: 50px; color: white">Provincia <h:selectOneMenu style="margin-left: 72px; width: 350px; border-block: revert; border-radius: 10px;" value="#{bodegaControlador.level2}" id="idList2"
+					disabled="#{bodegaControlador.level2ListDisabled}">
+					<f:selectItems value="#{bodegaControlador.level2List}" />
+					<f:ajax render="idList3 id4" onevent="indicador" />
+				</h:selectOneMenu></p>
+
+			<p style="margin-left: 50px; color: white">Ciudad <h:selectOneMenu style="margin-left: 85px; width: 350px; border-block: revert; border-radius: 10px;" value="#{bodegaControlador.level3}" id="idList3"
+					disabled="#{bodegaControlador.level3ListDisabled}">
+					<f:selectItems value="#{bodegaControlador.level3List}" />
+					<f:ajax render="id4" onevent="indicador" />
+				</h:selectOneMenu></p>
+
+			<br /> <span id="id5" style="display: none;"> </span>
+			<h:outputText  style="display: none;" value="#{bodegaControlador.level3}" id="id4" />
+
+			<p>
+				<h:commandButton style="margin-left: 300px;" value="Agregar" action="#{bodegaControlador.add}"
+					styleClass="btn btn-primary" />
+			</p>
+		</fieldset>
+
+
+		<h:dataTable value="#{bodegaControlador.bodegas}" var="b" style=" background-color: white; color: black; margin-top: 100px; width: 40%;"
+		styleClass="table table-dark table-striped">
+			<h:column>
+				<f:facet name="header">Codigo</f:facet>#{b.codigo}
+            </h:column>
+
+			<h:column>
+				<f:facet name="header">Nombre</f:facet>
+				<h:inputText value="#{b.nombre}" size="10" rendered="#{b.editable}" />
+				<h:outputText value="#{b.nombre}" rendered="#{not b.editable}" />
+			</h:column>
+
+
+			<h:column>
+				<f:facet name="header">Ciudad</f:facet>
+				<h:inputText value="#{b.ciudad.nombre}" size="10"
+					rendered="#{b.editable}" />
+				<h:outputText value="#{b.ciudad.nombre}"
+					rendered="#{not b.editable}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Accion</f:facet>
+
+				<h:commandLink value="Editar Bodega"
+					action="#{bodegaControlador.buscarBodega(b.codigo)}"
+					styleClass="btn btn-primary">
+					<f:actionListener binding="#{bodegaControlador.navegar()}" />
+				</h:commandLink>
+			</h:column>
+
+		</h:dataTable>
+
+	</h:form>
 </h:body>
 
 </html>

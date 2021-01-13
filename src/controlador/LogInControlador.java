@@ -71,7 +71,7 @@ public class LogInControlador implements Serializable {
                     FacesContext.getCurrentInstance().getExternalContext().redirect("../Private/paginaAdmin.xhtml");
                 }else {
                     createCookie(user.getCorreo(), false);
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("longIn.xhtml");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("../Public/factura.xhtml");
                 }
             }catch (Exception e){e.printStackTrace();}
         }
