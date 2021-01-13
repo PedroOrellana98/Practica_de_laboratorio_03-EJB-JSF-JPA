@@ -320,7 +320,7 @@ public class ProductoControlador implements Serializable {
 
     public void redirectBodegas(){
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/private/paginaBodega.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("../Private/paginaBodega.xhtml");
         } catch (Exception e) {
             e.printStackTrace();
         }

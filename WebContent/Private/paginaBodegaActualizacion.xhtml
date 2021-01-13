@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" type="javascript"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" type="javascript"></script>
+<link rel="stylesheet" href="style/style.css"/>
+
+<h:head>
+    <title>Editar Bodega</title>
+
+
+    <script type="text/javascript">
+        function indicador(data) {
+            if (data.status == "begin")
+                document.getElementById("id5").style.display = "inline";
+            else if (data.status == "success")
+                document.getElementById("id5").style.display = "none";
+        }
+    </script>
+
+</h:head>
+
+<h:body style="background-image: url('https://blog.prezi.com/wp-content/uploads/2019/04/03-deep-blue-1024x576.jpg'); background-repeat: no-repeat; background-size: cover;">
+    <h:outputLabel style="display: none" value="#{bodegaControlador.cookie}"/>
+    <div class="navbar navbar-light bg-light justify-content-between">
+        <p:graphicImage value=""/>
+    </div>
+
+	<h3 style="color: white; text-align: center; margin-top : 30px">EDITAR BODEGA</h3>
+
+    <h:form>
+        <fieldset style="width: 55%; float: left;">
+            <p style="margin-left: 50px; color: white"> <h:outputText value="Bodega " /> 
+            <h:inputText size="44" style="margin-left: 83px; border-block: revert; border-radius: 10px;" value="#{bodegaControlador.nombreBodega}" /></p>
+            <p style="margin-left: 50px; color: white">Pais <h:selectOneMenu style="margin-left: 110px; width: 350px; border-block: revert; border-radius: 10px;" value="#{bodegaControlador.level1}">
+                    <f:selectItems value="#{bodegaControlador.level1List}" />
+                    <f:ajax render="idList2 idList3 id4" onevent="indicador" />
+                </h:selectOneMenu>
+            </p>
+
+            <p style="margin-left: 50px; color: white">Provincia <h:selectOneMenu style="margin-left: 72px; width: 350px; border-block: revert; border-radius: 10px;" value="#{bodegaControlador.level2}" id="idList2"
+                                 disabled="#{bodegaControlador.level2ListDisabled}">
+                    <f:selectItems value="#{bodegaControlador.level2List}" />
+                    <f:ajax render="idList3 id4" onevent="indicador" />
+                </h:selectOneMenu>
+            </p>
+
+            <p style="margin-left: 50px; color: white">Ciudad <h:selectOneMenu style="margin-left: 85px; width: 350px; border-block: revert; border-radius: 10px;" value="#{bodegaControlador.level3}" id="idList3"
+                                 disabled="#{bodegaControlador.level3ListDisabled}">
+                    <f:selectItems value="#{bodegaControlador.level3List}" />
+                    <f:ajax render="id4" onevent="indicador" />
+                </h:selectOneMenu>
+            </p>
+
+            <br /> <span id="id5" style="display: none;"> </span>
+            <h:outputText style="display: none;" value="#{bodegaControlador.level3}" id="id4" /><br/>
+            <h:commandButton style="margin-left: 280px;" value="Guardar Cambios" action="#{bodegaControlador.actualizarBodega()}" styleClass="btn btn-primary">
+            </h:commandButton>
+        </fieldset>
+        
+        <h:dataTable value="#{bodegaControlador.bodegas}" var="b" style=" background-color: white; color: black; margin-top: 100px; width: 40%;"
+		styleClass="table table-dark table-striped">
+			<h:column>
+				<f:facet name="header">Codigo</f:facet>#{b.codigo}
+            </h:column>
+
+			<h:column>
+				<f:facet name="header">Nombre</f:facet>
+				<h:inputText value="#{b.nombre}" size="10" rendered="#{b.editable}" />
+				<h:outputText value="#{b.nombre}" rendered="#{not b.editable}" />
+			</h:column>
+
+
+			<h:column>
+				<f:facet name="header">Ciudad</f:facet>
+				<h:inputText value="#{b.ciudad.nombre}" size="10"
+					rendered="#{b.editable}" />
+				<h:outputText value="#{b.ciudad.nombre}"
+					rendered="#{not b.editable}" />
+			</h:column>
+
+		</h:dataTable>
+
+    </h:form>
+
+</h:body>
+
+</html>
