@@ -22,10 +22,6 @@ public class RowControlador implements Serializable{
         this.subtotal = subtotal;
     }
 
-    // getters & setters
-    // hasCode & equals
-
-
     public double getSubtotal() {
         return subtotal;
     }
@@ -92,7 +88,4 @@ public class RowControlador implements Serializable{
     public String toString() {
         return "Row [id=" + id + ", name=" + name + ", quantity=" + quantity + ", editable=" + editable + "]";
     }
-	
-	
-
 }

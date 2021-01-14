@@ -23,5 +23,4 @@ public class Response {
 	public int getIdResponse() {
 		return idResponse;
 	}
-
 }

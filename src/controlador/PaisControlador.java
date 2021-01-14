@@ -22,8 +22,6 @@ public class PaisControlador implements Serializable {
 	private String nombre;
 
 	public PaisControlador() {
-		// TODO Auto-generated constructor stub
-
 	}
 
 	@PostConstruct

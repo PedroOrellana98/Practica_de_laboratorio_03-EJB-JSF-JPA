@@ -49,7 +49,6 @@ public class ProductoControlador implements Serializable {
     private String selectedProducto;
     private String stock_mas;
     private List<String> bodegas_stock;
-    //atributo para consultar inventario
     private String bodega_inventario;
     private List<Producto> productos_list;
     private boolean disabled=true;
@@ -222,67 +221,57 @@ public class ProductoControlador implements Serializable {
                 s1.addBodega(a1);
                 s1.addStock(stock);
             } else {
-                System.out.println("No se pudo ejecutar el listado de productos");
+                System.out.println("");
             }
         }
         productoEJB.create(s1);
+        productos_list = productoEJB.findAll();
     }
 
     public void setProductos_list(List<Producto> productos_list) {
         this.productos_list = productos_list;
     }
-
     
     public void aumentarStock(){
-        //Buscar el producto
         Producto product=productoEJB.buscarPrductoPorNombre(selectedProducto);
         if(product!=null)
-            System.out.println("PRODUCTO ENCONTRADO");
-        //Buscar la Bodega
+            System.out.println("");
         Bodega bodeg= bodegaEJB.buscarBodegaPorNombre(bodegas_stock.get(0));
         if(bodeg!=null)
-            System.out.println("BODEGA ENCONTRADO");
-        //Actualizar entidad Stock
+            System.out.println("");
         Stock stock_actualizar = stockEJB.recuperarStock(product,bodeg);
         stock_actualizar.setStock(Integer.parseInt(stock_mas));
         if(stock_actualizar!=null)
-            System.out.println("STOCK ENCONTRADO");
+            System.out.println("");
         stockEJB.edit(stock_actualizar);
     }
     
-    
     public List<Producto> consultarInventarioPorBodega(){
-        System.out.println("bodega_inventario"+bodega_inventario);
         if(bodega_inventario!=null){
             Bodega bodega_to_inventario=bodegaEJB.buscarBodegaPorNombre(bodega_inventario);
-            if(bodega_to_inventario!=null)
-                System.out.println("bodega encontrada papi");
+            if(bodega_to_inventario!=null) 
+                System.out.println("");
             List<Stock> stock_inventario= stockEJB.recuperarStockPorBodega(bodega_to_inventario);
             if(bodega_to_inventario!=null)
-                System.out.println("inventario encontrada papi");
+                System.out.println("");
             List<Producto> productos_inventario= new ArrayList<Producto>();
             for (Stock stock_inv:stock_inventario
             ) {
                 String codigo_prod_inv=stock_inv.getProducto().getNombre();
-                System.out.println("nombre del producto buscado "+codigo_prod_inv);
-
                 Producto producto_inv=productoEJB.buscarPrductoPorNombre(codigo_prod_inv);
-
                 producto_inv.setStock(stock_inv.getStock());
-                System.out.println(producto_inv.toString());
                 productos_inventario.add(producto_inv);
             }
             return productos_inventario;
         } else {
             Producto pr = new Producto();
-            pr.setNombre("No hay");
+            pr.setNombre("NO EXISTE");
             List<Producto>productos_null= new ArrayList<Producto>();
             productos_null.add(pr);
             return productos_null;
 
         }
     }
-    
     
     public String getCookie() {
         Cookie cookie = (Cookie) FacesContext.getCurrentInstance().getExternalContext().getRequestCookieMap().get("administrador");
@@ -303,7 +292,7 @@ public class ProductoControlador implements Serializable {
                 e.printStackTrace();
             }
         }
-        return "Bienvenido!";
+        return "";
     }
     
     public void deleteCookie(){
@@ -325,5 +314,4 @@ public class ProductoControlador implements Serializable {
             e.printStackTrace();
         }
     }
-
 }
