@@ -104,6 +104,14 @@ public class CatalogoControlador implements Serializable {
         this.categoriaSeleccionada = categoriaSeleccionada;
     }
     
+    public void setBodegaSeleccionada(String bodegaSeleccionada){
+        this.bodegaSeleccionada = bodegaSeleccionada;
+    }
+
+    public String getBodegaSeleccionada(){
+        return this.bodegaSeleccionada;
+    }
+    
     public void cargarProductosPorBodega(){
         AtomicInteger atomicInteger= new AtomicInteger();
         Optional<Bodega> bodega = bodegaList.stream().filter(e -> e.getNombre().equals(bodegaSeleccionada)).findFirst();
@@ -121,14 +129,6 @@ public class CatalogoControlador implements Serializable {
             System.out.println(mapaCodigoNombreProductos);
         }
     }
-
-    public void setBodegaSeleccionada(String bodegaSeleccionada){
-        this.bodegaSeleccionada = bodegaSeleccionada;
-    }
-
-    public String getBodegaSeleccionada(){
-        return this.bodegaSeleccionada;
-    }
     
     private Map<String, String> buscarProducto(String productoNombre){
         mapaCodigoNombreProducto = new TreeMap<>();
@@ -138,7 +138,6 @@ public class CatalogoControlador implements Serializable {
     }
 
     public void redirect(){
-        System.out.println("LEO");
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("../Public/logIn.xhtml");
         } catch (Exception e) {

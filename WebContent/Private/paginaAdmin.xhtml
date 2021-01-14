@@ -5,7 +5,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:p="http://primefaces.org/ui">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" type="javascript"></script>
@@ -37,7 +37,6 @@ h3 {
 		</h:form>
 		<h:outputLabel value="#{productoBean.cookie}" />
 	</div>
-
 
 	<h:form
 		style="float: left;width: 80%;margin-right: 10%;margin-left: 10%;margin-top: 4%;">
@@ -91,12 +90,13 @@ h3 {
 				itemValue="#{bodegas.nombre}" itemLabel="#{bodegas.nombre}" />
 		</h:selectManyMenu>
 
-		<h:commandButton action="#{productoControlador.addProducto}"
-			value="Registrar" class="btn btn-primary"
-			style="margin-left: 3%;width: 10%;margin-top: 5%"></h:commandButton>
+		<p:commandButton action="#{productoControlador.addProducto}"
+			value="Registrar" class="btn btn-primary" update = "f1 f2"
+			style="margin-left: 3%;width: 10%;margin-top: 5%"></p:commandButton>
 
 	</h:form>
 
+<h:form id = "f1">
 	<h:dataTable
 		style=" background-color: white; color: black; margin-top: 100px; width: 35%; margin-left: 160px; float: left"
 		value="#{productoControlador.list}" var="t"
@@ -110,6 +110,10 @@ h3 {
 			<h:outputText value="#{t.nombre}" />
 		</h:column>
 	</h:dataTable>
+	
+</h:form>
+
+<h:form id = "f2">
 
 	<h:dataTable
 		style=" background-color: white; color: black; margin-top: 100px; width: 35%; margin-left: 160px; float: left"
@@ -132,6 +136,8 @@ h3 {
 			<h:outputText value="#{p.stock}" />
 		</h:column>
 	</h:dataTable>
+	
+</h:form>
 
 </h:body>
 </html>

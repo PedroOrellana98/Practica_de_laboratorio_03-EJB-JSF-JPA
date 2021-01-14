@@ -42,7 +42,6 @@ public class BodegaControlador implements Serializable {
 	private Bodega bodega;
 	private String cookie;
 
-	/* ADICION */
 	private String level1, level2, level3;
 	private boolean level2ListDisabled = true, level3ListDisabled = true;
 	private Map<String, String> paises;
@@ -73,22 +72,80 @@ public class BodegaControlador implements Serializable {
 	public void setnombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
+	public boolean isLevel2ListDisabled() {
+		return level2ListDisabled;
+	}
 
-	public String add() {// pedro
+	public void setLevel2ListDisabled(boolean level2ListDisabled) {
+		this.level2ListDisabled = level2ListDisabled;
+	}
+
+	public boolean isLevel3ListDisabled() {
+		return level3ListDisabled;
+	}
+
+	public void setLevel3ListDisabled(boolean level3ListDisabled) {
+		this.level3ListDisabled = level3ListDisabled;
+	}
+
+	public String getLevel1() {
+		return level1;
+	}
+
+	public String getLevel2() {
+		return level2;
+	}
+
+	public String getLevel3() {
+		return level3;
+	}
+
+	public void setLevel1(String level1) {
+		this.level1 = level1;
+		this.setLevel2("Seleccionar");
+		this.level2ListDisabled = this.level1.equals("Seleccionar");
+	}
+
+	public void setLevel2(String level2) {
+		this.level2 = level2;
+		this.setLevel3("Seleccionar");
+		this.level3ListDisabled = this.level2.equals("Seleccionar");
+	}
+
+	public void setLevel3(String level3) {
+		this.level3 = level3;
+	}
+	
+	public String getNombreBodega() {
+		return nombreBodega;
+	}
+
+	public void setNombreBodega(String nombreBodega) {
+		this.nombreBodega = nombreBodega;
+	}
+
+	public int getIdBodega() {
+		return idBodega;
+	}
+
+	public void setIdBodega(int idBodega) {
+		this.idBodega = idBodega;
+	}
+
+	public String add() {
 		String[] paisProCiu = this.level3.split("-");
 		Pais pais = paisEJB.find("Ecuador");
 		Provincia provincia = consultarProvincia(paisProCiu[1].toUpperCase(), pais);
 		Ciudad ciudad = consultarCiudad(paisProCiu[2].toUpperCase(), provincia);
 		this.bodegaEJB.create(new Bodega(this.nombre.toUpperCase(), ciudad));
-		/* limipeza de campos */
+		
 		this.nombre = "";
 		this.level1 = "Seleccionar";
 		this.level3 = "Seleccionar";
 		this.bodegas = this.bodegaEJB.findAll();
 		return null;
 	}
-
-	/* METODOS ADICIONADOS */
 
 	public Pais consultarPais(String nombre) {
 		Pais p;
@@ -162,53 +219,7 @@ public class BodegaControlador implements Serializable {
 		return null;
 	}
 
-	/* ADICION */
-	public boolean isLevel2ListDisabled() {
-		return level2ListDisabled;
-	}
-
-	public void setLevel2ListDisabled(boolean level2ListDisabled) {
-		this.level2ListDisabled = level2ListDisabled;
-	}
-
-	public boolean isLevel3ListDisabled() {
-		return level3ListDisabled;
-	}
-
-	public void setLevel3ListDisabled(boolean level3ListDisabled) {
-		this.level3ListDisabled = level3ListDisabled;
-	}
-
-	public String getLevel1() {
-		return level1;
-	}
-
-	public String getLevel2() {
-		return level2;
-	}
-
-	public String getLevel3() {
-		return level3;
-	}
-
-	public void setLevel1(String level1) {
-		this.level1 = level1;
-		this.setLevel2("Seleccionar");
-		this.level2ListDisabled = this.level1.equals("Seleccionar");
-	}
-
-	public void setLevel2(String level2) {
-		this.level2 = level2;
-		this.setLevel3("Seleccionar");
-		this.level3ListDisabled = this.level2.equals("Seleccionar");
-	}
-
-	public void setLevel3(String level3) {
-		this.level3 = level3;
-	}
-
 	private ArrayList<String> generateList(String pre, int size) {
-		// String[] list = new String[size];
 		ArrayList<String> list = new ArrayList<String>();
 		list.add("Seleccionar");
 
@@ -224,12 +235,11 @@ public class BodegaControlador implements Serializable {
 			public void onComplete(Response status) {
 				if (status.isSuccess()) {
 
-					String pedro = status.getResult();
+					String arreglo = status.getResult();
 
-					pedro = pedro.substring(0, pedro.length() - 1);
-					String[] p = pedro.split("}");
+					arreglo = arreglo.substring(0, arreglo.length() - 1);
+					String[] p = arreglo.split("}");
 
-					/* Paises */
 					paises = new HashMap<>();
 					for (String pp : p) {
 						pp = pp.substring(9, pp.length());
@@ -241,9 +251,7 @@ public class BodegaControlador implements Serializable {
 						paises.put(key, value);
 						paisesf.add(key);
 					}
-
 				}
-
 			}
 		});
 
@@ -260,10 +268,10 @@ public class BodegaControlador implements Serializable {
 			public void onComplete(Response status) {
 				if (status.isSuccess()) {
 
-					String pedro = status.getResult();
+					String arreglo = status.getResult();
 
-					pedro = pedro.substring(0, pedro.length() - 1);
-					String[] p = pedro.split("}");
+					arreglo = arreglo.substring(0, arreglo.length() - 1);
+					String[] p = arreglo.split("}");
 
 					for (String pp : p) {
 						pp = pp.substring(11, pp.length());
@@ -273,9 +281,7 @@ public class BodegaControlador implements Serializable {
 						provincias.add(pais + "-" + key);
 
 					}
-
 				}
-
 			}
 		});
 		this.codePais = paises.get(pais);
@@ -292,10 +298,10 @@ public class BodegaControlador implements Serializable {
 			public void onComplete(Response status) {
 				if (status.isSuccess()) {
 
-					String pedro = status.getResult();
+					String arreglo = status.getResult();
 
-					pedro = pedro.substring(0, pedro.length() - 1);
-					String[] p = pedro.split("}");
+					arreglo = arreglo.substring(0, arreglo.length() - 1);
+					String[] p = arreglo.split("}");
 
 					for (String pp : p) {
 						pp = pp.substring(9, pp.length());
@@ -304,9 +310,7 @@ public class BodegaControlador implements Serializable {
 						String key = pp2[0].substring(1, pp2[0].length() - 1);
 						ciudades.add(provincia + "-" + key);
 					}
-
 				}
-
 			}
 		});
 		String[] provinciaF = provincia.split(" ");
@@ -317,42 +321,22 @@ public class BodegaControlador implements Serializable {
 	}
 
 	public ArrayList<String> getLevel1List() {
-		// this.generateList("", 5);
 
-		// return this.generateList("", 5);
 		return obtenerPaises();
 	}
 
 	public ArrayList<String> getLevel2List() {
 		if (this.level2ListDisabled)
 			return this.generateList("", 1);
-		else// return this.generateList(this.level1 + "--", 5);
+		else
 			return this.obtenerProvincias(this.level1);
 	}
 
 	public ArrayList<String> getLevel3List() {
 		if (this.level3ListDisabled)
 			return this.generateList("", 1);
-		else// return this.generateList(this.level2 + "--", 5);
+		else
 			return this.obtenerCiudades(this.level2);
-	}
-
-	/* verfa */
-
-	public String getNombreBodega() {
-		return nombreBodega;
-	}
-
-	public void setNombreBodega(String nombreBodega) {
-		this.nombreBodega = nombreBodega;
-	}
-
-	public int getIdBodega() {
-		return idBodega;
-	}
-
-	public void setIdBodega(int idBodega) {
-		this.idBodega = idBodega;
 	}
 
 	public String getCookie() {

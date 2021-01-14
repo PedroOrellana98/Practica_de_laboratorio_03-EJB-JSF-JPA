@@ -62,7 +62,7 @@ public class LogInControlador implements Serializable {
             e.printStackTrace();
         }
         if(user == null){
-            return "El atributo es nulo";
+            return "NULL";
         }else{
 
             try {
@@ -91,10 +91,8 @@ public class LogInControlador implements Serializable {
         properties.put("path", "/");
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         try {
-            System.out.println("Se creo la cookie");
             externalContext.addResponseCookie(name, value+"!", properties);
         }catch (Exception e){
-            System.out.println("Algo salio mal Cookie");
             e.printStackTrace();
         }
     }
@@ -106,7 +104,7 @@ public class LogInControlador implements Serializable {
             return "Valor cookie: " + value;
         }catch (Exception e){
             e.printStackTrace();
-            return "No existe la cookie!";
+            return "";
         }
     }
 }
