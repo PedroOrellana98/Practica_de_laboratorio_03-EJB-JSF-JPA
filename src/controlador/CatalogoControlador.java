@@ -17,6 +17,7 @@ import javax.faces.annotation.FacesConfig;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Named;
+import javax.faces.component.UIOutput;
 
 import ejb.BodegaEJB;
 import ejb.CategoriaEJB;
@@ -69,14 +70,13 @@ public class CatalogoControlador implements Serializable {
         filtrado = new ArrayList<>();
     }
 
-   /* public void filtrarProductos(AjaxBehaviorEvent event){
+    public void filtrarProductos(AjaxBehaviorEvent event){
         mapaCodigoNombreProductos = buscarProducto((String)
         		((UIOutput) event.getSource()).getValue());
-    }*/
+    }
 
     public void abrirProducto(String param){
         producto = mapaCodigoProducto.get(Integer.parseInt(param));
-        System.out.println(producto);
     }
 
     public List<String> getCategorias(){
@@ -92,9 +92,9 @@ public class CatalogoControlador implements Serializable {
         return mapaCodigoNombreProductos;
     }
 
-    /*public void cargarProductosPorCategoria(){
+    public void cargarProductosPorCategoria(){
         mapaCodigoNombreProductos = productoEJB.getProductosPorCategoria(categoriaEJB.getCategoryByName(categoriaSeleccionada));
-    }*/
+    }
 
     public String getCategoriaSeleccionada(){
         return this.categoriaSeleccionada;
@@ -140,7 +140,7 @@ public class CatalogoControlador implements Serializable {
     public void redirect(){
         System.out.println("LEO");
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/public/logIn.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("../Public/logIn.xhtml");
         } catch (Exception e) {
             e.printStackTrace();
         }

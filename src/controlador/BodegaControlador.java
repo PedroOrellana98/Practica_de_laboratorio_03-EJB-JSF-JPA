@@ -82,8 +82,8 @@ public class BodegaControlador implements Serializable {
 		this.bodegaEJB.create(new Bodega(this.nombre.toUpperCase(), ciudad));
 		/* limipeza de campos */
 		this.nombre = "";
-		this.level1 = "---Elige---";
-		this.level3 = "---Elige---";
+		this.level1 = "Seleccionar";
+		this.level3 = "Seleccionar";
 		this.bodegas = this.bodegaEJB.findAll();
 		return null;
 	}
@@ -135,7 +135,7 @@ public class BodegaControlador implements Serializable {
 		this.bodegaEJB.edit(this.bodega);
 		this.bodegas = null;
 		this.bodegas = bodegaEJB.findAll();
-		this.level1 = "---Elige---";
+		this.level1 = "Seleccionar";
 		FacesContext.getCurrentInstance().getApplication().getNavigationHandler()
 				.handleNavigation(FacesContext.getCurrentInstance(), null, "paginaBodega.xhtml");
 	}
@@ -193,14 +193,14 @@ public class BodegaControlador implements Serializable {
 
 	public void setLevel1(String level1) {
 		this.level1 = level1;
-		this.setLevel2("---Elige---");
-		this.level2ListDisabled = this.level1.equals("---Elige---");
+		this.setLevel2("Seleccionar");
+		this.level2ListDisabled = this.level1.equals("Seleccionar");
 	}
 
 	public void setLevel2(String level2) {
 		this.level2 = level2;
-		this.setLevel3("---Elige---");
-		this.level3ListDisabled = this.level2.equals("---Elige---");
+		this.setLevel3("Seleccionar");
+		this.level3ListDisabled = this.level2.equals("Seleccionar");
 	}
 
 	public void setLevel3(String level3) {
@@ -210,7 +210,7 @@ public class BodegaControlador implements Serializable {
 	private ArrayList<String> generateList(String pre, int size) {
 		// String[] list = new String[size];
 		ArrayList<String> list = new ArrayList<String>();
-		list.add("---Elige---");
+		list.add("Seleccionar");
 
 		return list;
 	}

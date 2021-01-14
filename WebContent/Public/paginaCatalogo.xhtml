@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<link rel="stylesheet" type="text/css" href="css/style.css" media="screen"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
+
+<script type="text/javascript">
+    function mostrarInformacion() {
+        let component = document.getElementById('mas_info');
+        component.style.display = 'block';
+    }
+
+    function ocultarInformacion() {
+        let component = document.getElementById('mas_info');
+        component.style.display = 'none';
+    }
+</script>
+
+<h:head>
+    <title>Catalogo De Productos</title>
+</h:head>
+
+<h:body style="margin-bottom: 5%; background-color: #a1b3ba; background-image: url('https://static1.squarespace.com/static/517aed7ae4b0c568b9f0463e/51f172ede4b0a74f07551711/53e3b417e4b0a8015873b53b/1407520477858/?format=1500w'); background-repeat: no-repeat; background-size: cover;">
+
+    <!-- BARRA DE NAVEGACION -->
+    <h:panelGroup>
+        <div class="navbar navbar-expand-sm bg-light navbar-dark">
+            <a class="navbar-brand" style="margin-right: 20px; color: black">PAGINA INICIAL</a>
+            <h:form style="margin-left: 100px; width: 70%; max-width: 700px">
+                <h:inputText id="txtProducto" class="form-control mr-sm-2"
+                             style="margin-left: auto; margin-right: 10px; max-width: 700px">
+                    <f:ajax event="keyup" listener="#{catalogoControlador.filtrarProductos}" render=":table_father"/>
+                </h:inputText>
+            </h:form>
+            
+            <h:form>
+            <h:commandButton styleClass="btn btn-primary" value="Iniciar Sesion" action="#{catalogoControlador.redirect}"  style="margin-left: 500px; float: right"/>
+            </h:form>
+        </div>
+
+        <!-- APARTADO PARA LOS PRODUCTOS -->
+        <br/>
+        <h:panelGroup id="table_father">
+            <h:dataTable id="tabla" value="#{catalogoControlador.productos.entrySet().toArray()}" var="entry"
+                         styleClass="table table-light table-striped" style="width: 70%;
+             margin-left: auto; margin-right: auto;"
+                         rendered="#{not empty catalogoControlador.productos}">
+
+                <h:column pt:style="text-align: center">
+                    <f:facet name="header" pt:style="width: 150%">
+                        <h5>PRODUCTO</h5>
+                    </f:facet>
+                    #{entry.value}
+                </h:column>
+
+                    <h:form>
+                        <h:commandLink value="Abrir Producto" action="#{catalogoControlador.abrirProducto(entry.key)}">
+                            <f:ajax event="action"
+                                    render="codigo_producto nombre_producto imagen_producto precioVenta_producto stock_producto"
+                                    onevent="mostrarInformacion()"/>
+                        </h:commandLink>
+                    </h:form>
+
+            </h:dataTable>
+        </h:panelGroup>
+	
+            
+    </h:panelGroup>
+</h:body>
+</html>
