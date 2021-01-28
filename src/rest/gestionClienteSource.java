@@ -32,11 +32,11 @@ public class gestionClienteSource {
 
 		if (persona.verificarUsuario(cedula, password)) {
 
-			return Response.ok("Login successfull").build();
+			return Response.ok("Logueado satisfactoriamente").build();
 
 		} else {
 
-			return Response.ok("Login failed").build();
+			return Response.ok("Logueo falló").build();
 
 		}
 	}
