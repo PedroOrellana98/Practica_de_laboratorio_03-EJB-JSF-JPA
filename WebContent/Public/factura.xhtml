@@ -68,11 +68,11 @@
         <h:outputLabel class="form-group" for="nombre" value="Cedula: "></h:outputLabel>
         <h:inputText class="form-group" id="nombre" value="#{facturaDetalleControlador.cedula}"></h:inputText>
 
-        <h:commandButton class="btn btn-success" style="margin: 10px" value="BuscarPersona" action="#{facturaDetalleControlador.mensaje()}">
+       
             <f:ajax execute="nombre" render="mensaje salida salida2 salida3 salida4 salida5" />
 
         </h:commandButton>
-        <div class="alert alert-primary" role="alert">
+        <div class="alert alert-primary" style="hidden : hidden;" role="alert">
             <h:outputText id="mensaje" value="#{facturaDetalleControlador.mensaje}"/>
         </div>
         <p> </p>
@@ -94,117 +94,6 @@
 
     </h:form>
 
-    <h3>Detalle Factura</h3>
-    <h:form>
-        <h:dataTable value="#{facturaDetalleControlador.list}" var="o" styleClass="tabla"
-                     headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
-            <h:column>
-                <f:facet name="header">Codigo</f:facet>#{o.id}</h:column>
-            <h:column>
-                <f:facet name="header">Descripcion</f:facet>
-                <h:inputText value="#{o.name}" size="10" rendered="#{o.editable}" />
-                <h:outputText value="#{o.name}" rendered="#{not o.editable}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">Cantidad</f:facet>
-                <h:inputText value="#{o.quantity}" size="10"
-                             rendered="#{o.editable}" />
-                <h:outputText value="#{o.quantity}" rendered="#{not o.editable}" />
-            </h:column>
-
-            ///precio subtotal
-            <h:column>
-                <f:facet name="header">Precio</f:facet>
-                <h:inputText value="#{o.precio}" size="10" rendered="#{o.editable}" />
-                <h:outputText value="#{o.precio}" rendered="#{not o.editable}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">Subtotal</f:facet>
-                <h:inputText value="#{o.subtotal}" size="10"
-                             rendered="#{o.editable}" />
-                <h:outputText value="#{o.subtotal}" rendered="#{not o.editable}" ><f:convertNumber pattern="#0.00" /></h:outputText>
-            </h:column>
-
-
-
-            <h:column>
-                <f:facet name="header">Eliminar</f:facet>
-                <h:commandLink value="Delete" action="#{facturaDetalleControlador.delete(o)}" />
-            </h:column>
-            <h:column>
-                <f:facet name="header">Editar</f:facet>
-                <h:commandLink value="Edit" action="#{facturaDetalleControlador.edit(o)}"
-                               rendered="#{not o.editable}" />
-                <h:commandLink value="Save" action="#{facturaDetalleControlador.save(o)}"
-                               rendered="#{o.editable}" />
-            </h:column>
-        </h:dataTable>
-
-
-
-
-        <h:dataTable value="#{facturaDetalleControlador.fila}" var="o" styleClass="tabla"
-                     headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
-            <h:column>
-                <f:facet name="header">------------------------------------------------------------- </f:facet>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Subtotal</f:facet>
-                <h:outputText value="#{facturaDetalleControlador.subtotalcabecera}" ><f:convertNumber pattern="#0.00" /></h:outputText>
-            </h:column>
-        </h:dataTable>
-
-        <h:dataTable value="#{facturaDetalleControlador.fila}" var="o" styleClass="tabla"
-                     headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
-            <h:column>
-                <f:facet name="header">----------------------------------------------------------- </f:facet>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Descuento</f:facet>
-                <h:outputText value="#{facturaDetalleControlador.descuento}" ><f:convertNumber pattern="#0.00" /></h:outputText>
-            </h:column>
-        </h:dataTable>
-
-        <h:dataTable value="#{facturaDetalleControlador.fila}" var="o" styleClass="tabla"
-                     headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
-            <h:column>
-                <f:facet name="header">----------------------------------------------------------------- </f:facet>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Iva</f:facet>
-                <h:outputText value="#{facturaDetalleControlador.iva}" ><f:convertNumber pattern="#0.00" /></h:outputText>
-            </h:column>
-        </h:dataTable>
-
-        <h:dataTable value="#{facturaDetalleControlador.fila}" var="o" styleClass="tabla"
-                     headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
-            <h:column>
-                <f:facet name="header"  >-------------------------------------------------------- </f:facet>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Total A Pagar</f:facet>
-                <h:outputText value="#{facturaDetalleControlador.totalpagar}" ><f:convertNumber pattern="#0.00" /></h:outputText>
-
-            </h:column>
-        </h:dataTable>
-        <ul>
-
-            <li>Nombre:<h:inputText size="10" value="#{facturaDetalleControlador.name}" /></li>
-            <li>Cantidad:<h:inputText size="10"
-                                      value="#{facturaDetalleControlador.quantity}" />
-            </li>
-        </ul>
-        <h:commandButton value="Buscar Producto" style="margin: 10px"  class="btn btn-success" action="#{facturaDetalleControlador.add}" />
-
-        <h:outputText id="producto" value="#{facturaDetalleControlador.busqueda}"/>
-
-        <h:commandButton value="CrearFactura" style="margin: 10px"  class="btn btn-success" action="#{facturaDetalleControlador.crearFactura()}" />
-
-        <h:link value="listar Facturas" outcome="listarFacturas.xhtml" />
-
-    </h:form>
-    </div>
-    </div>
-    </div>
+  
 </h:body>
 </html>
